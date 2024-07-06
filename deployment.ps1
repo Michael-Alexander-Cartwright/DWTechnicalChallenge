@@ -10,7 +10,7 @@ az group create --name $rgname --location $rglocation
 # Create server farm (Web Hosting Plan)
 az deployment group create `
     --resource-group $rgname `
-    --template-file .\web\webplan.bicep `
+    --template-file webplan.bicep `
     --output json > serverFarmOutput.json
 
 # Deploy web apps where user provides server farm
@@ -18,7 +18,7 @@ az deployment group create `
 $servfarmname=Read-Host "Please enter server farm name"
 az deployment group create `
     --resource-group $rgname `
-    --template-file .\web\webapp.bicep `
+    --template-file webapp.bicep `
     --parameters servFarmName=$servfarmname
 
 # Possible inprovement:
