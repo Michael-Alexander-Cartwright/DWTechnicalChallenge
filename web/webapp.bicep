@@ -14,11 +14,11 @@ var timeZones = [
 resource webApp 'Microsoft.Web/sites@2023-12-01' = [for timeZone in timeZones: {
   // Unique name based from resource group ID and appended timezone TZ
   // Could index timeZone to append numeric number to web app for shorter name
-  name: replace('${webAppName}-${timeZone}', '/', '-')
+  name: toLower(replace('${webAppName}-${timeZone}', '/', '-'))
   location: resourceGroup().location
   kind: 'app'
   properties: {
-    serverFarmId: '/subscriptions/${subscription().id}/resourceGroups/${resourceGroup().name}/providers/Microsoft.Web/serverfarms/${servFarmName}'
+    serverFarmId: resourceId('Microsoft.Web/serverfarms', servFarmName)
     siteConfig: {
       // Uses TZ database timezone format
       websiteTimeZone: timeZone

@@ -20,3 +20,8 @@ az deployment group create `
     --resource-group $rgname `
     --template-file .\web\webapp.bicep `
     --parameters servFarmName=$servfarmname
+
+# Possible inprovement:
+# `jq` could be installed to automate taking the server farm name out of the json file
+# output. But outside of scope and template deployment for the server farm might not be
+# executed locally to produce this file.
