@@ -5,10 +5,14 @@ Create a Bicep template that will deploy three Windows web apps to Azure, all to
 [x] Create a Bicep template that will deploy three Windows web apps to Azure.
 [x] All web apps use the same hosting plan.
 [x] One of the web apps should have its time zone set to Brisbane Australia.
-[ ] The web app segment of the template should be reusable by other templates.
+[?] The web app segment of the template should be reusable by other templates.
 
 # Context:
 The webplan.bicep template was used to help me test and simulate the scenario as per the question.
+
+# How to Run:
+Please read `deployment.ps1` for commands that can be executed to deploy the web apps and other associated conponents (i.e. "webplan")
+Recommend reading before executing.
 
 # Query:
 I do not completely understand what "web app segment" refers to. After some exploration with the Biceps Template documentation I am wondering if this is refering to the site configuration specifically. I decided to not declare the last task complete because I lack understanding, but gave it my best to still allow the template to be used for other resource groups and server farms.
