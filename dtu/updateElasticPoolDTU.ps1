@@ -79,7 +79,8 @@ if (-not $dbTransMax) {
 }
 
 # Check if the new min DTU value was provided, if not we prompt the user
-if (-not $dbTransMin) {
+# Also check that the DTU minimum value passed is recognised as an int to prevent powershell misintertpreting 0 as not a user provided parameter variable
+if (-not $dbTransMin -and -not $dbTransMin -is [int]) {
     $dbTransMin = Read-Host "Please enter the new 'Minimum DTU' value for the Elastic Pool '$elasticPoolName'"
 }
 
