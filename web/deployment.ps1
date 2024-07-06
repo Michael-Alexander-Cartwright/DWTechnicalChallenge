@@ -9,3 +9,6 @@ az deployment group create --resource-group $rgname --template-file .\web\webpla
 
 # Deploy web app with bicep script
 az deployment group create --resource-group $rgname --template-file .\web\webapp.bicep
+
+# Temp. deploy web plan and app with bicep script
+az deployment group create --resource-group $rgname --template-file .\web\web.bicep

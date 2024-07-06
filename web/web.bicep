@@ -1,11 +1,13 @@
 // Generate unique string for web app to prevent name conflicts
-param webAppGenUName string = uniqueString(resourceGroup().id)
+param webGenUName string = uniqueString(resourceGroup().id)
 
-var webAppSiteName = toLower('webapp-winos-${webAppGenUName}')
+var webAppName = toLower('webapp-winos-${webGenUName}')
+var webServicePlanName = toLower('webplan-winos-${webGenUName}')
+var locationTarget = 'australiaeast'
 
 resource hostPlan 'Microsoft.Web/serverfarms@2023-12-01' = {
-  name: 'testWebPlan'
-  location: 'australiaeast'
+  name: webServicePlanName
+  location: locationTarget
   sku: {
     // Free tier
     name: 'F1'
@@ -18,8 +20,8 @@ resource hostPlan 'Microsoft.Web/serverfarms@2023-12-01' = {
 }
 
 resource webApp 'Microsoft.Web/sites@2023-12-01' = {
-  name: webAppSiteName
-  location: 'australiaeast'
+  name: webAppName
+  location: locationTarget
   kind: 'app'
   properties: {
     serverFarmId: hostPlan.id
