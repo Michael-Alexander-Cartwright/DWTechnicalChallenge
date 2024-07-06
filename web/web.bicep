@@ -3,11 +3,10 @@ param webGenUName string = uniqueString(resourceGroup().id)
 
 var webAppName = toLower('webapp-winos-${webGenUName}')
 var webServicePlanName = toLower('webplan-winos-${webGenUName}')
-var locationTarget = 'australiaeast'
 
 resource hostPlan 'Microsoft.Web/serverfarms@2023-12-01' = {
   name: webServicePlanName
-  location: locationTarget
+  location: resourceGroup().location
   sku: {
     // Free tier
     name: 'F1'
@@ -21,9 +20,13 @@ resource hostPlan 'Microsoft.Web/serverfarms@2023-12-01' = {
 
 resource webApp 'Microsoft.Web/sites@2023-12-01' = {
   name: webAppName
-  location: locationTarget
+  location: resourceGroup().location
   kind: 'app'
   properties: {
     serverFarmId: hostPlan.id
+    siteConfig: {
+      // Uses TZ database timezone format
+      websiteTimeZone: 'Australia/Brisbane'
+    }
   }
 }
