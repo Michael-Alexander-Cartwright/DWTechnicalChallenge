@@ -7,3 +7,5 @@ az group create --name $group
 az deployment group create --resource-group $group --template-file .\mat\script.bicep --mode Complete
 
 #az group delete --resource-group $group --yes
+
+az deployment sub create --template-file .\mat\script.bicep
