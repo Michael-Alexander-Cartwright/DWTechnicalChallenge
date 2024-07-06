@@ -1,4 +1,4 @@
-$group="DWTestResGrp"
+$group="DWResGrp"
 $location="australiaeast"
 
 az configure --defaults location=$location
@@ -6,4 +6,4 @@ az configure --defaults location=$location
 az group create --name $group
 az deployment group create --resource-group $group --template-file .\mat\script.bicep --mode Complete
 
-az group delete --resource-group $group --yes
+#az group delete --resource-group $group --yes

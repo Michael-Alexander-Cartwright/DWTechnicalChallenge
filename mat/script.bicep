@@ -1,5 +1,8 @@
+var prefix = 'mactest'
+var storageName = '${prefix}20240706storage'
+
 resource storageAccount 'Microsoft.Storage/storageAccounts@2023-05-01' = {
-  name: '20240706teststorage'
+  name: storageName
   location: 'australiaeast'
   sku: {
     name: 'Standard_LRS'
