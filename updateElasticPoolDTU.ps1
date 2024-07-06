@@ -38,12 +38,12 @@
 
 # Parameters required for updating Sql Elastic Pool on for given Azure Resource Group and Server 
 param (
-    [string]$resourceGroupName, #SqlDB
-    [string]$serverName, #testdb-asdf1234
-    [string]$elasticPoolName, #testDB-elastic
-    [int]$dbTransUnit, #50
-    [int]$dbTransMax, #5
-    [int]$dbTransMin #0
+    [string]$resourceGroupName,
+    [string]$serverName,
+    [string]$elasticPoolName,
+    [int]$dbTransUnit,
+    [int]$dbTransMax,
+    [int]$dbTransMin
 )
 
 <#
