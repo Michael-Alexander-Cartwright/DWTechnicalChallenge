@@ -1,3 +1,6 @@
+// This "web plan" was developed to assist with modelling the scenario and to help test.
+// Designed as a seperate template as per the question.
+
 // Generate unique string for web serverfarm to prevent name conflicts using resource group
 var webServicePlanName = toLower('webplan-winos-${uniqueString(resourceGroup().id)}')
 
