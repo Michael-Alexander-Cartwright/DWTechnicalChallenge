@@ -1,6 +1,9 @@
+// Generate unique string for web serverfarm to prevent name conflicts using resource group
+var webServicePlanName = toLower('webplan-winos-${uniqueString(resourceGroup().id)}')
+
 resource hostPlan 'Microsoft.Web/serverfarms@2023-12-01' = {
-  name: 'testWebPlan'
-  location: 'australiaeast'
+  name: webServicePlanName
+  location: resourceGroup().location
   sku: {
     // Free tier
     name: 'F1'
@@ -11,3 +14,6 @@ resource hostPlan 'Microsoft.Web/serverfarms@2023-12-01' = {
     reserved: false
   }
 }
+
+output hostPlanID string = hostPlan.id
+output hostPlanName string = hostPlan.name

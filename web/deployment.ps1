@@ -1,14 +1,22 @@
-$rgname="rg-bicep-webapp-winos"
-$location="australiaeast"
+# Set the resource group's name
+$rgname="dw-bicep-webapp-winos"
 
-# Resource group creation
-az group create --name $rgname --location $location
+# Set the resource group's location 
+$rglocation="australiaeast"
 
-# Deploy web plan with bicep script
-az deployment group create --resource-group $rgname --template-file .\web\webplan.bicep
+# Create the resource group on Azure
+az group create --name $rgname --location $rglocation
 
-# Deploy web app with bicep script
-az deployment group create --resource-group $rgname --template-file .\web\webapp.bicep
+# Create server farm (Web Hosting Plan)
+az deployment group create `
+    --resource-group $rgname `
+    --template-file .\web\webplan.bicep `
+    --output json > serverFarmOutput.json
 
-# Temp. deploy web plan and app with bicep script
-az deployment group create --resource-group $rgname --template-file .\web\web.bicep
+# Deploy web apps where user provides server farm
+# I have the output provided in json to help with obtaining the server farm name.
+$servfarmname=Read-Host "Please enter server farm name"
+az deployment group create `
+    --resource-group $rgname `
+    --template-file .\web\webapp.bicep `
+    --parameters servFarmName=$servfarmname
